@@ -21,16 +21,16 @@
 
 	services:
 	  postgres:
-		image: postgres:15
-		container_name: airflow_postgres_example
-		environment:
-		  POSTGRES_USER: example_user
-		  POSTGRES_PASSWORD: example_pass
-		  POSTGRES_DB: example_db
-		ports:
-		  - "5433:5432"  # Пробрасываем порт 5432 контейнера на 5433 хоста
-		volumes:
-		  - postgres_data_volume:/var/lib/postgresql/data # Для сохранения данных
+	    image: postgres:15
+	    container_name: airflow_postgres_example
+	    environment:
+	      POSTGRES_USER: example_user
+	      POSTGRES_PASSWORD: example_pass
+	      POSTGRES_DB: example_db
+	    ports:
+	      - "5433:5432"  # Пробрасываем порт 5432 контейнера на 5433 хоста
+	    volumes:
+	      - postgres_data_volume:/var/lib/postgresql/data # Для сохранения данных
 
 	volumes:
 	  postgres_data_volume: # Объявляем именованный том
@@ -101,8 +101,8 @@
 ## 5. Создание DAG для работы с PostgreSQL
 
 1.  В директории `dags` твоего Airflow окружения создай папку `sql`.
-2.  В папке `sql` создай файлы SQL-скриптов (например, `create_client_table.sql`, `insert_clients.sql`).
-3.  В папке `dags` создай файл DAG'а, например, `finance_postgres_dag.py`, используя `PostgresOperator` для выполнения SQL-скриптов из папки `sql`.
+2.  В папке `sql` создай файлы SQL-скриптов (`create_client_table.sql`, `insert_clients.sql`).
+3.  В папке `dags` создай файл DAG'а `finance_postgres_dag.py`, используя `PostgresOperator` для выполнения SQL-скриптов из папки `sql`.
 
     Содержимое этих файлов приведено в репозитории.
 	
