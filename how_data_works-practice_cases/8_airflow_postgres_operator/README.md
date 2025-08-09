@@ -8,7 +8,8 @@
 2.  Скачай установщик для Windows.
 3.  Запусти установщик и следуй инструкциям. Docker Desktop установит и Docker Engine, и Docker Compose.
 4.  Запусти Docker Desktop после установки. Он должен отображаться в системном трее и выглядеть примерно так:
-    ![Как выглядит включенный докер](images/docker.png)
+    
+![Как выглядит включенный докер](images/docker.png)
 
 ## 2. Создание и запуск контейнера PostgreSQL
 
@@ -16,23 +17,23 @@
 2.  В этой директории создай файл `docker-compose.yml` со следующим содержимым:
 
     ```yaml
-    version: '3.8'
+	version: '3.8'
 
-    services:
-      postgres:
-        image: postgres:15
-        container_name: airflow_postgres_example
-        environment:
-          POSTGRES_USER: example_user
-          POSTGRES_PASSWORD: example_pass
-          POSTGRES_DB: example_db
-        ports:
-          - "5433:5432" # Пробрасываем порт 5432 контейнера на 5433 хоста
-        volumes:
-          - postgres_/var/lib/postgresql/data # Для сохранения данных
+	services:
+	  postgres:
+		image: postgres:15
+		container_name: airflow_postgres_example
+		environment:
+		  POSTGRES_USER: example_user
+		  POSTGRES_PASSWORD: example_pass
+		  POSTGRES_DB: example_db
+		ports:
+		  - "5433:5432"  # Пробрасываем порт 5432 контейнера на 5433 хоста
+		volumes:
+		  - postgres_data_volume:/var/lib/postgresql/data # Для сохранения данных
 
-    volumes:
-      postgres_ # Объявляем именованный том
+	volumes:
+	  postgres_data_volume: # Объявляем именованный том
     ```
 
 3.  Открой терминал (Git Bash, cmd, PowerShell или терминал WSL).
