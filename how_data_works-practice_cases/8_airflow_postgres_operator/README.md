@@ -37,11 +37,11 @@
     ```
 
 3.  Открой терминал (Git Bash, cmd, PowerShell или терминал WSL).
-4.  Перейди в директорию с `docker-compose.yml`.
+4.  Перейди в директорию с `postgres_db.yml`.
 5.  Выполни команду для запуска контейнера в фоновом режиме:
 
     ```bash
-    docker-compose up -d
+    docker-compose -f postgres_db.yml --project-name postgres_db up -d
     ```
 
 6.  Проверь, что контейнер запущен:
