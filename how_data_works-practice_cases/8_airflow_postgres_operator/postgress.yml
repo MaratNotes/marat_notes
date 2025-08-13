@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: airflow_postgres_example
+    environment:
+      POSTGRES_USER: example_user
+      POSTGRES_PASSWORD: example_pass
+      POSTGRES_DB: example_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data_volume:/var/lib/postgresql/data # <-- Изменено имя тома
+
+volumes:
+  postgres_data_volume: # <-- Изменено имя тома
