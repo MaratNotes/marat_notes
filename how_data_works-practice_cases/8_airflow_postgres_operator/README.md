@@ -28,7 +28,7 @@
 	      POSTGRES_PASSWORD: example_pass
 	      POSTGRES_DB: example_db
 	    ports:
-	      - "5433:5432"  # Пробрасываем порт 5432 контейнера на 5433 хоста
+	      - "5532:5432"  # Пробрасываем порт 5432 контейнера на 5532 хоста
 	    volumes:
 	      - postgres_data_volume:/var/lib/postgresql/data # Для сохранения данных
 
@@ -58,7 +58,7 @@
 2.  Открой DBeaver.
 3.  Создай новое подключение к PostgreSQL:
     *   **Host**: `localhost` или `127.0.0.1` (так как DBeaver и Docker работают на одной машине)
-    *   **Port**: `5433`
+    *   **Port**: `5532`
     *   **Database**: `example_db`
     *   **Username**: `example_user`
     *   **Password**: `example_pass`
@@ -78,11 +78,11 @@
         ```
     *   Выполни команду для проверки доступности порта:
         ```bash
-        telnet <IPv4-адрес_из_ipconfig> 5433
+        telnet <IPv4-адрес_из_ipconfig> 5532
         ```
         Например:
         ```bash
-        telnet 192.168.0.107 5433
+        telnet 192.168.0.107 5532
         ```
     *   Если соединение установлено (появляется пустой экран или спецсимволы), значит порт доступен. Нажми `Ctrl + ]`, затем `quit` чтобы выйти из telnet.
     *   Если соединение отклонено (например, `telnet: Unable to connect to remote host: Connection refused`), проверь, запущен ли контейнер и правильно ли проброшен порт.
@@ -95,7 +95,7 @@
     *   **Schema**: `example_db`
     *   **Login**: `example_user`
     *   **Password**: `example_pass`
-    *   **Port**: `5433`
+    *   **Port**: `5532`
 7.  Сохрани настройки.
 
 ## 5. Создание DAG для работы с PostgreSQL
