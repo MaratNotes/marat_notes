@@ -97,6 +97,7 @@
    npp airflow.cfg
    ```
    Найди строку `test_connection = Disabled`. Измени значение на `Enabled`, это необходимо для активации кнопки тестирования подключения в Airflow.
+   Перезагрузи `airflow webserver` и `airflow scheduler` в отдельных терминалах.
 6.  Перейди в меню `Admin` -> `Connections`.
 7.  Найди подключение `postgres_default` или создай новое:
     *   **Connection Id**: `postgres_default`
@@ -120,8 +121,14 @@
 
 ## 6. Проверка работы
 
-1.  Запусти созданный DAG в веб-интерфейсе Airflow.
-2.  Проверь логи выполнения задач.
-3.  Открой подключение в DBeaver и проверь, что таблицы и данные были созданы.
+1.  Необходимо установить дополнительный модуль находясь в WSL в окружении Airflow (помните, на [первом занятии](https://github.com/MaratNotes/marat_notes/tree/master/how_data_works-practice_cases/airflow_wsl) - 
+`source ENV/bin/activate`)
+```
+pip install apache-airflow-providers-postgres
+```
+Перезагрузи `airflow webserver` и `airflow scheduler` в отдельных терминалах.
+2.Запусти созданный DAG в веб-интерфейсе Airflow.
+3.  Проверь логи выполнения задач.
+4.  Открой подключение в DBeaver и проверь, что таблицы и данные были созданы.
 
 Теперь у тебя есть полностью настроенная среда для работы с Airflow и PostgreSQL.
