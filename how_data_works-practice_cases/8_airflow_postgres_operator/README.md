@@ -86,9 +86,19 @@
         ```
     *   Если соединение установлено (появляется пустой экран или спецсимволы), значит порт доступен. Нажми `Ctrl + ]`, затем `quit` чтобы выйти из telnet.
     *   Если соединение отклонено (например, `telnet: Unable to connect to remote host: Connection refused`), проверь, запущен ли контейнер и правильно ли проброшен порт.
-4.  Открой веб-интерфейс Airflow (обычно `http://localhost:8080`).
-5.  Перейди в меню `Admin` -> `Connections`.
-6.  Найди подключение `postgres_default` или создай новое:
+4. Открой веб-интерфейс Airflow (по умолчанию `http://localhost:8080`).
+5. Отредактируй файл airflow.cfg в Wsl. У меня он находиться в папке `/home/local_admin/airflow`.
+   Я поставил alias
+   ```
+   alias npp="\"/mnt/c/Program Files/Notepad++/Notepad++.exe\""
+   ```
+   и после этого
+   ```
+   npp airflow.cfg
+   ```
+   Найди строку `test_connection = Disabled`. Измени значение на `Enabled`, это необходимо для активации кнопки тестирования подключения в Airflow.
+6.  Перейди в меню `Admin` -> `Connections`.
+7.  Найди подключение `postgres_default` или создай новое:
     *   **Connection Id**: `postgres_default`
     *   **Connection Type**: `Postgres`
     *   **Host**: `<IPv4-адрес_из_ipconfig>` (например, `192.168.0.107`)
@@ -96,7 +106,7 @@
     *   **Login**: `example_user`
     *   **Password**: `example_pass`
     *   **Port**: `5532`
-7.  Сохрани настройки.
+8.  Сохрани настройки.
 
 ## 5. Создание DAG для работы с PostgreSQL
 
