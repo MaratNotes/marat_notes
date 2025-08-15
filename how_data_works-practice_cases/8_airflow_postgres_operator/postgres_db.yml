@@ -11,7 +11,7 @@ services:
     ports:
       - "5532:5432"
     volumes:
-      - postgres_data_volume:/var/lib/postgresql/data # <-- Изменено имя тома
+      - postgres_data_volume:/var/lib/postgresql/data 
 
 volumes:
-  postgres_data_volume: # <-- Изменено имя тома
+  postgres_data_volume:
