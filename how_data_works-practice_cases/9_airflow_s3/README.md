@@ -75,4 +75,32 @@ pip install apache-airflow-providers-amazon
 
 Далее запускаем `airflow webserver` и `airflow scheduler` в отдельных терминалах для работы airflow.
 
-## Шаг 6: Настройка connection
+## Шаг 6: Настройка подключения к MinIO в Airflow
+
+Чтобы Airflow мог взаимодействовать с MinIO, необходимо создать подключение через веб-интерфейс.
+
+### 1. Откройте Airflow UI
+Перейдите в браузере по адресу:  
+http://localhost:8080
+
+### 2. Перейдите в раздел Connections
+- В верхнем меню выберите **Admin → Connections**
+- Нажмите кнопку **+** для добавления нового подключения
+
+### 3. Заполните параметры подключения
+
+| Поле | Значение |
+|------|--------|
+| **Conn Id** | `minio_default` |
+| **Conn Type** | `Amazon Web Services` |
+| **Login** | `minioadmin` |
+| **Password** | `minioadmin` |
+| **Host** | `http://localhost:9000` |
+
+В поле **Extra** укажите JSON:
+```json
+{
+  "endpoint_url": "http://localhost:9000",
+}
+
+## Поздравляю! Настройка закончена
