@@ -58,4 +58,21 @@ __Пароль__: minioadmin
 Hello world!
 ```
 
-И загрузите через интерфейс.
+И загрузите файл через интерфейс.
+
+## Шаг 5: Установка необходимых библиотек
+
+Необходимо установить дополнительный модуль находясь в WSL в окружении Airflow (помните, на [первом занятии](https://github.com/MaratNotes/marat_notes/tree/master/how_data_works-practice_cases/airflow_wsl) - 
+`source ENV/bin/activate`)
+
+Далее устанавливаем
+
+```
+pip install apache-airflow-providers-amazon
+```
+
+Этот пакет — расширение для Airflow, которое добавляет поддержку Amazon Web Services (AWS), включая S3.
+
+Далее запускаем `airflow webserver` и `airflow scheduler` в отдельных терминалах для работы airflow.
+
+## Шаг 6: Настройка connection
