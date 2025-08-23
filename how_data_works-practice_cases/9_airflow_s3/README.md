@@ -102,6 +102,6 @@ http://localhost:8080
 {
   "endpoint_url": "http://localhost:9000",
 }
-'''
+```
 
 ## Поздравляю! Настройка закончена
