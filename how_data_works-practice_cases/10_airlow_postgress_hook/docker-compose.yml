@@ -1,0 +1,33 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: airflow_postgres_example
+    environment:
+      POSTGRES_USER: example_user
+      POSTGRES_PASSWORD: example_pass
+      POSTGRES_DB: example_db
+    ports:
+      - "5532:5432"
+    volumes:
+      - postgres_data_volume:/var/lib/postgresql/data 
+
+  minio:
+    image: quay.io/minio/minio
+    container_name: minio
+    ports:
+      - "9000:9000"  # S3 API
+      - "9001:9001"  # Web Console
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ":9001"
+    restart: unless-stopped
+
+volumes:
+  minio_data:
+  postgres_data_volume:
