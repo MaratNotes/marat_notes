@@ -76,12 +76,12 @@ Ubuntu-24.04   Running    2
 >
 > Авторизоваться (можно пропустить)
 >
-> Дождись, пока Docker запустится
+> Дождитесь, пока Docker запустится
 
 ---
 
 ### 4. Подготовка для запуска
-В репозитории дфа файла - **docker-compose.yml** и **hello_dag.py**
+В репозитории два файла - **docker-compose.yml** и **hello_dag.py**
 Скопируйте docker-compose.yml в папку где будете запускать docker-compose, например, в папку: **airflow_docker**
 
 
