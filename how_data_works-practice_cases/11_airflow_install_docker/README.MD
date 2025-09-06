@@ -67,10 +67,8 @@ Ubuntu-24.04   Running    2
 
 ---
 
-### 3. Установите Docker Desktop
-1. Скачайте Docker Desktop: https://www.docker.com/products/docker-desktop
-2. Установите программу
-3. Запустите при первом запуске Docker попросит:
+### 3. Запустите Docker Desktop
+Запустите, при первом запуске Docker попросит:
 
 > Разрешить использовать WSL 2
 >
@@ -81,7 +79,7 @@ Ubuntu-24.04   Running    2
 ---
 
 ### 4. Подготовка для запуска
-В репозитории два файла - **docker-compose.yml** и **hello_dag.py**
+В репозитории лежат два файла - **docker-compose.yml** и **hello_dag.py**
 Скопируйте docker-compose.yml в папку где будете запускать docker-compose, например, в папку: **airflow_docker**
 
 
@@ -116,6 +114,12 @@ docker-compose up -d
 Через 10–30 секунд DAG должен появиться
 
 Нажмите и запустите вручную
+
+> Примечанние:
+>
+> Для остановки контейнера используйте команду
+>
+> ```docker-compose down```
 
 ---
 
