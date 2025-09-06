@@ -13,10 +13,7 @@
 
 Скачать: [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)
 
-После установки:
-- Запустите Docker Desktop
-- Убедитесь, что иконка в трее активна
-- На Windows 10/11 Home/Pro требуется **WSL 2**
+Установите, запустим позже в шаге 3.
 
 ---
 
