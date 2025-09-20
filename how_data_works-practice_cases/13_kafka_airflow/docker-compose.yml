@@ -73,7 +73,11 @@ services:
       - postgres
       - kafka
       - airflow-init
-    command: airflow webserver
+    command: >
+      bash -c "
+      pip install apache-airflow-providers-apache-kafka==1.7.0 &&
+      airflow webserver
+      "    
 
   airflow-scheduler:
     image: apache/airflow:2.9.3
@@ -90,7 +94,11 @@ services:
       - postgres
       - kafka
       - airflow-init
-    command: airflow scheduler
+    command: >
+      bash -c "
+      pip install apache-airflow-providers-apache-kafka==1.7.0 &&
+      airflow scheduler
+      "
 
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
