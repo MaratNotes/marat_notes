@@ -51,7 +51,6 @@ services:
       - postgres
     command: >
       bash -c "
-      pip install apache-airflow-providers-apache-kafka==1.7.0 &&
       airflow db init &&
       airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.org
       "
