@@ -35,9 +35,28 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
 
-  airflow:
+  airflow-init:
+    image: apache/airflow:2.9.3
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+    depends_on:
+      - postgres
+    command: >
+      bash -c "
+      pip install apache-airflow-providers-apache-kafka &&
+      airflow db init &&
+      airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.org
+      "
+
+  airflow-webserver:
     image: apache/airflow:2.9.3
     environment:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
@@ -51,23 +70,27 @@ services:
       - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
     depends_on:
-      postgres:
-        condition: service_healthy
-      kafka:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-    command: >
-      bash -c "
-      pip install --no-cache-dir apache-airflow-providers-apache-kafka &&
-      airflow db init &&
-      airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.org &&
-      airflow scheduler &
-      airflow webserver
-      "
+      - postgres
+      - kafka
+      - airflow-init
+    command: airflow webserver
+
+  airflow-scheduler:
+    image: apache/airflow:2.9.3
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+      AIRFLOW__CORE__ENABLE_XCOM_PICKLING: 'true'
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+    depends_on:
+      - postgres
+      - kafka
+      - airflow-init
+    command: airflow scheduler
 
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
@@ -80,6 +103,5 @@ services:
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
       KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
 
-# ✅ ТОЛЬКО ТО, ЧТО ИСПОЛЬЗУЕТСЯ:
 volumes:
-  postgres_
+  postgres_data:
