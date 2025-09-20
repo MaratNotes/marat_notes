@@ -62,6 +62,7 @@ services:
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
       AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
       AIRFLOW__CORE__ENABLE_XCOM_PICKLING: 'true'
+      AIRFLOW__WEBSERVER__SECRET_KEY: 'airflow_secret_key_12345'
     ports:
       - "8080:8080"
     volumes:
@@ -76,7 +77,7 @@ services:
       bash -c "
       pip install apache-airflow-providers-apache-kafka==1.7.0 &&
       airflow webserver
-      "    
+      "
 
   airflow-scheduler:
     image: apache/airflow:2.9.3
@@ -85,6 +86,7 @@ services:
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
       AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
       AIRFLOW__CORE__ENABLE_XCOM_PICKLING: 'true'
+      AIRFLOW__WEBSERVER__SECRET_KEY: 'airflow_secret_key_12345'
     volumes:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
