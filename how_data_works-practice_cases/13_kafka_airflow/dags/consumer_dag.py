@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.providers.apache.kafka.operators.consume import ConsumeFromTopicOperator
-from airflow.operators.python import PythonOperator
 import json
 import logging
 
@@ -37,28 +36,6 @@ def process_message(message):
         logger.error(f"!!! Ошибка обработки сообщения: {e}")
         return None
 
-def save_processed_data(**context):
-    """Сохраняет обработанные данные (пример)."""
-    logger = logging.getLogger(__name__)
-    
-    # Получаем все обработанные сообщения из XCom
-    ti = context['ti']
-    messages = ti.xcom_pull(task_ids='consume_from_user_events', key='return_value')
-    
-    if messages:
-        # Фильтруем None (ошибки обработки)
-        successful_messages = [msg for msg in messages if msg is not None]
-        logger.info(f"Сохранение {len(successful_messages)} обработанных событий")
-        
-        # Здесь может быть запись в БД, S3 и т.д.
-        for record in successful_messages:
-            logger.info(f"Сохранение: {record['user_id']} - {record['event_type']}")
-        
-        return f"Успешно сохранено {len(successful_messages)} записей"
-    else:
-        logger.info("Нет данных для сохранения")
-        return "Нет данных для сохранения"
-
 with DAG(
     'kafka_consumer_dag',
     default_args=default_args,
@@ -76,17 +53,4 @@ with DAG(
         commit_cadence='end_of_batch',
         max_messages=50,
         max_batch_size=10,
-        consumer_config={
-            'auto.offset.reset': 'earliest',
-            'group.id': 'airflow-consumer-group',
-            'enable.auto.commit': False,
-        },
     )
-
-    save_task = PythonOperator(
-        task_id='save_processed_data',
-        python_callable=save_processed_data,
-        provide_context=True,
-    )
-
-    consume_task >> save_task
