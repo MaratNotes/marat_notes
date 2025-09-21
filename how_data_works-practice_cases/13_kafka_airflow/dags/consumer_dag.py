@@ -51,6 +51,6 @@ with DAG(
         topics=['user_events'],
         apply_function=process_message,
         commit_cadence='end_of_batch',
-        max_messages=50,
-        max_batch_size=10,
+        max_messages=5,
+        max_batch_size=5,
     )
