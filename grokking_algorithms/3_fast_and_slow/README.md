@@ -1,11 +1,11 @@
-# Grokayem Algosobesy: Два указателя
+# Grokayem Algosobesy: Быстрый и медленный указатели
 
 Быстрый и медленный указатели — паттерн для решения задач по поиску циклов в связных списках и задач, которые можно свести к этой аналогии.
 
 
 ## Содержимое
-- [`Grokaem-algosobesy_Two_Pointers.pdf`](Grokaem-algosobesy_Two_Pointers.pdf) — подробная презентация: идея паттерна, визуализация, типы задач, пошаговый алгоритм.
-- [`decision.py`](decision.py) — реализация решения задачи [LeetCode 167. Two Sum II – Input Array Is Sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/).
+- [`Grokaem_algosobesy_Fast_and_Slow.pdf`](Grokaem_algosobesy_Fast_and_Slow.pdf) — подробная презентация: идея паттерна, визуализация, типы задач, пошаговый алгоритм.
+- [`141.py`](141.py) — реализация решения задачи [141. Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/description/).
 
 ## Когда использовать?
 - Нужно определить наличие цикла в связном списке — классический сценарий использования паттерна
