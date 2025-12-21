@@ -14,9 +14,9 @@
 
 
 ## Задачи для практики (по возрастанию сложности)
-1. [**876. Middle of the Linked List**](https://leetcode.com/problems/middle-of-the-linked-list) — найти средний элемент связного списка за один проход.
-2. [**287.  Find the Duplicate Number**](https://leetcode.com/problems/find-the-duplicate-number/description/) — найти дубликат в массиве чисел от 1 до n.
-3. [**142. Linked List Cycle II**](https://leetcode.com/problems/linked-list-cycle-ii) — найти узел, с которого начинается цикл в связном списке.
+1. [**876. Middle of the Linked List**](https://leetcode.com/problems/middle-of-the-linked-list/) — найти средний элемент связного списка за один проход.
+2. [**287.  Find the Duplicate Number**](https://leetcode.com/problems/find-the-duplicate-number/) — найти дубликат в массиве чисел от 1 до n.
+3. [**142. Linked List Cycle II**](https://leetcode.com/problems/linked-list-cycle-ii/) — найти узел, с которого начинается цикл в связном списке.
 
 ## Для кого это?
 Для студентов и разработчиков, кто:
