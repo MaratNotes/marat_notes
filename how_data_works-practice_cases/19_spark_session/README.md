@@ -41,6 +41,12 @@
 ## Структура_прроекта
 19_spark_session/
 ├── README.md                # этот файл
+
+
 ├── SparkSessionExample.ipynb               # ноутбук с демо (генерация + 3 теста)
+
+
 └── retail.csv/              # сгенерированные данные (появится после запуска)
+
+
 └── Apache_Spark-SparkSession.pdf  # презентация по заданной теме
