@@ -11,4 +11,4 @@ with DAG(
     start_date=datetime(2025,1,1),
     schedule_interval=None
 ) as dag:
-    hello_task = PythonOperator(task_id='hello_func', python_callable=hello)
+    hello_task = PythonOperator(task_id='hello_func', python_callable=hello_func)
