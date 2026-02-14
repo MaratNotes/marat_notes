@@ -8,10 +8,16 @@
 
 ## Структура_прроекта
 
-├── Apache_Spark-Parquet.pdf # Презентация (13 слайдов)
-├── generate_data.py # Генерация 10 млн строк в CSV / Parquet
-├── benchmark_parquet.py # Бенчмарк: чтение, фильтрация, партиционирование
-└── README.md
+Apache_Spark-Parquet.pdf # Презентация (13 слайдов)
+
+
+generate_data.py # Генерация 10 млн строк в CSV / Parquet
+
+
+benchmark_parquet.py # Бенчмарк: чтение, фильтрация, партиционирование
+
+
+README.md
 
 
 ## Быстрый старт
